@@ -7,10 +7,12 @@ module.exports = {
         if (err) {
           reject(new Error(`${err.sqlMessage}`))
         }
-        resolve({
-          results
-        })
+        // delete results[0].password
+        resolve(
+          results[0]
+        )
       })
+      console.log(dbQuery.sql)
     })
-  }
+  },
 }

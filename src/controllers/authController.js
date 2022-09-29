@@ -17,8 +17,9 @@ module.exports = {
       if (!email || !password || !no_phone) {
         return helperWrapper.response(res, false, 404, 'ERROR: Fields must be filled')
       }
+      const photo = req.file ? req.file.filename : 'https://divedigital.id/wp-content/uploads/2021/10/1-min.png'
       // console.log(id, 'jkjkrs')
-      const setData = { email, password, no_phone }
+      const setData = { email, password, no_phone, photo }
       const result = await Auth.register(setData, id)
       const setDataEmail = {
         to: email,
@@ -59,14 +60,15 @@ module.exports = {
       if ((await bcrypt.compare(password, result[0].password)) == false) {
         return helperWrapper.response(res, false, 400, "ERROR: Wrong Email / Password");
       }
-      const token = jwt.sign({ user_id: result[0].id, role: result[0].role }, process.env.JWT_SECRET_KEY, {
+      const token = jwt.sign({ user_id: result[0].id, role: result[0].role, email: result[0].email }, process.env.JWT_SECRET_KEY, {
         expiresIn: '1 day'
       })
       return helperWrapper.response(res, true, 200, 'Success login', {
         user_id: result[0].id,
         token,
         photo: result[0].photo,
-        role: result[0].role
+        role: result[0].role,
+        email: result[0].email
       })
 
     } catch (err) {
