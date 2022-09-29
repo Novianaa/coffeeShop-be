@@ -11,7 +11,7 @@ const db = require('./src/helpers/mysql');
 const router = require('./src/routes/index')
 
 var corsOptions = {
-  origin: ['http://localhost:3000', 'http://localhost:3002', 'https://novia-coffeeshop.vercel.app/', 'https://novia-coffeeshop-git-main-novianaa.vercel.app/', 'https://novia-coffeeshop-novianaa.vercel.app/'],
+  origin: ['http://localhost:3000', 'http://localhost:3002', 'https://novia-coffeeshop.vercel.app', 'https://novia-coffeeshop-git-main-novianaa.vercel.app', 'https://novia-coffeeshop-novianaa.vercel.app'],
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
 
