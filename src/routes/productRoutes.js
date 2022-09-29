@@ -6,7 +6,7 @@ const uploadImage = require('../middleware/uploadImageProduct')
 
 router.post('/', isLogin, isAdmin, uploadImage, addProduct)
 router.get('/', isLogin, getAllProduct)
-router.get('/:category_id', isLogin, getAllProductByCategory)
+router.get('/:category_id', getAllProductByCategory)
 router.get('/detail/:slug', isLogin, detailProduct)
 
 
